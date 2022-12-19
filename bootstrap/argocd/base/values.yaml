@@ -1,31 +1,31 @@
 default:
   app:
     labels:
-      app.kubernetes.io/name: product-catalog
+      app.kubernetes.io/name: product-catalog2
     enabled: true
     enableAutoSync: true
     autoSyncPrune: false
-    project: product-catalog-basic
+    project: product-catalog-basic2
     destination:
       namespace: openshift-gitops
       server: https://kubernetes.default.svc
     source:
-      repoURL: https://github.com/keithchong/product-catalog-basic.git
+      repoURL: https://github.com/keithchong/product-catalog-basic2.git
       targetRevision: main
 
 projects:
 
-  product-catalog-basic:
+  product-catalog-basic2:
     description: Project for Product Catalog Basic Application
     namespace: openshift-gitops
     sourceRepos:
     - '*'
     destinations: |
-      - namespace: 'dev-product-catalog'
+      - namespace: 'dev-product-catalog2'
         server: https://kubernetes.default.svc
-      - namespace: 'test-product-catalog'
+      - namespace: 'test-product-catalog2'
         server: https://kubernetes.default.svc
-      - namespace: 'prod-product-catalog'
+      - namespace: 'prod-product-catalog2'
         server: https://kubernetes.default.svc
     extraFields: |
       clusterResourceWhitelist:
@@ -34,26 +34,26 @@ projects:
 
 applications:
 
-  dev-product-catalog:
+  dev-product-catalog2:
     labels:
-      openshift.gitops/environment: dev-product-catalog
+      openshift.gitops/environment: dev-product-catalog2
     destination:
-      namespace: dev-product-catalog
+      namespace: dev-product-catalog2
     source:
       path: environments/overlays/dev
 
-  test-product-catalog:
+  test-product-catalog2:
     labels:
-      openshift.gitops/environment: test-product-catalog
+      openshift.gitops/environment: test-product-catalog2
     destination:
-      namespace: test-product-catalog
+      namespace: test-product-catalog2
     source:
       path: environments/overlays/test
 
-  prod-product-catalog:
+  prod-product-catalog2:
     labels:
-      openshift.gitops/environment: prod-product-catalog
+      openshift.gitops/environment: prod-product-catalog2
     destination:
-      namespace: prod-product-catalog
+      namespace: prod-product-catalog2
     source:
       path: environments/overlays/prod
